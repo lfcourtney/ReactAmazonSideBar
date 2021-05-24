@@ -4,13 +4,12 @@ import {useAmazonContext} from '../Context/AmazonContext';
 
 function SubContainer(props) {
     
-    const {subContainerEntries} = useAmazonContext();
+    const {subContainerEntries, setSubContainer} = useAmazonContext();
 
     return (
         <div className="sub-container" style={props.state === "entering" ? {animation: "moveSubContainer .3s forwards"} : 
-        props.state === "entered" ? {transform: "translateX(0px)"} : {animation: "moveSubContainer .3s reverse backwards"}}
-        onClick={() => props.setSubContainer(false)}>
-            <div className="sub-header">
+        props.state === "entered" ? {transform: "translateX(0px)"} : {animation: "moveSubContainer .3s reverse backwards"}}>
+            <div className="sub-header" onClick={() => setSubContainer(false)}>
             <i class="fas fa-chevron-left"></i> MAIN MENU
             </div>
             {subContainerEntries.map(subEntry => (

@@ -21,8 +21,7 @@ function Sidenav(props) {
             unmountOnExit
             mountOnEnter>
             {state => (
-                <SideNavContent setSubContainer={setSubContainer} 
-                subContainer={subContainer} state={state} />
+                <SideNavContent state={state} />
             )}
             </Transition>
             <Transition

@@ -8,6 +8,7 @@ import {useAmazonContext} from './Context/AmazonContext';
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
+  const {setSubContainer} = useAmazonContext();
 
   const openNav = () => {
       setNavOpen(true);
@@ -15,6 +16,7 @@ function App() {
 
   const closeNav = () => {
     setNavOpen(false);
+    
   }
 
   const {entryStore} = useAmazonContext();
@@ -27,7 +29,9 @@ function App() {
       timeout={300}
       mountOnEnter
       unmountOnExit>
-      {state => (
+      {state => {
+        if(state === "exited")  setSubContainer(false);
+        return(
         <>
         <Sidenav state={state} />
         <div className="overlay" 
@@ -38,7 +42,7 @@ function App() {
         : state === "entered" ? {opacity: "1"} : {animation: "show .3s backwards reverse"}}
         onClick={closeNav}>&times;</div>
       </>
-      )}
+      )}}
       </Transition>
       <BackgroundPage />
     </div>
