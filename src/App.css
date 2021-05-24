@@ -1,38 +1,237 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "AmazonEmber";
+  src: url("./assets/AmazonFont.ttf");
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "AmazonEmber";
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/*Background Page*/
+.background-page-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
   min-height: 100vh;
   display: flex;
+  text-align: center;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  z-index: -100;
+}
+.background-page-container p {
+  font-size: 40px;
+}
+.background-page-container img {
+  margin-top: 20px;
+  height: auto;
+  width: 80%;
+  max-width: 800px;
+}
+/*Hamburger Button*/
+.hamburger-btn {
+  font-size: 30px;
+  margin: 20px 0 0 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.closeBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 390px;
   color: white;
+  font-size: 50px;
+  cursor: pointer;
+  transform: translateY(-5px);
+  z-index: 75;
+}
+/*Sidenav*/
+.sidenav {
+  max-width: 380px;
+  overflow: hidden;
+  width: 85%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: left center;
+  transform: translateX(-420px);
+}
+.sideNavContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.sidenavHeader {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(35, 47, 62);
+  padding: 10px 0px 10px 30px;
+  font-size: 23px;
+}
+.sidenavContent {
+  padding: 15px 0px 15px 25px;
+}
+.sidenavContentHeader {
+  margin-top: 5px;
+  padding: 15px 0px 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.sidenavContent:hover {
+  background-color: #eaeded;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+hr {
+  height: 1px;
+  border: 0;
+  color: gray;
+  background-color: gray;
+  margin: 15px auto 10px auto;
+}
+.sidenavRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 15px 25px 15px 25px;
+  cursor: pointer;
+}
+.sidenavRow:hover {
+  background-color: #eaeded;
+}
+.sidenavRow i {
+  color: #8e9090;
+}
+.sidenavRow:hover i {
+  color: #111111;
+}
+/*DropDown*/
+.sidenavRowDropdown {
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  padding: 15px 25px 15px 25px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.sidenavRowDropdown:hover {
+  background-color: #eaeded;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.sidenavRowDropdown i {
+  color: #8e9090;
+  margin-left: 10px;
+}
+
+.sidenavRowDropdown:hover i {
+  color: #111111;
+}
+
+.sidenavContainer {
+  height: 0px;
+  transition: height 0.3s;
+  transform-origin: center top;
+}
+
+.sidenavContainer hr {
+  width: 85%;
+}
+.paddingDiv {
+  transition: margin-bottom 0.3s;
+}
+/*Sub Container*/
+.sub-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: white;
+  transform: translateX(420px);
+}
+.sub-header {
+  margin-top: 5px;
+  padding: 15px 0px 15px 25px;
+  font-weight: bold;
+}
+.sub-header:hover {
+  background-color: #eaeded;
+  cursor: pointer;
+}
+.sub-header i {
+  color: #8e9090;
+}
+
+/*Animations*/
+/*Expand the entire sidenav outwards*/
+@keyframes moveSideBar {
+  0% {
+    transform: translateX(-420px);
+    z-index: 100;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translateX(-0px);
+  }
+}
+/*General fade into existence*/
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*Open and close drop down*/
+@keyframes dropDown {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+/*Move sub container*/
+@keyframes moveSubContainer {
+  0% {
+    transform: translateX(420px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+/*Move main container in relation to sub container*/
+@keyframes moveMainContainer {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-420px);
   }
 }
